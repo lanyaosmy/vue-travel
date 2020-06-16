@@ -28,12 +28,19 @@
 <script>
 // @ is an alias to /src
 import store from '@/store.js'
+
 export default {
     name: 'Home',
     components: {},
     data() {
         return {
-            destinations: store.destinations
+            destinations: store.destinations,
+            localCount: 2
+        }
+    },
+    methods: {
+        increment() {
+            this.$store.commit('increment')
         }
     }
 }

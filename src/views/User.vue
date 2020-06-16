@@ -7,13 +7,13 @@
     </div>
 </template>
 <script>
-import store from '@/store.js';
+import store from '@/store.js'
 export default {
     methods: {
         logout() {
-            store.user = null;
-            this.$router.push('/');
+            store.user = null
+            this.$router.push('/')
         }
     }
-};
+}
 </script>

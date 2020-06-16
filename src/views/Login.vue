@@ -11,20 +11,20 @@
     </div>
 </template>
 <script>
-import store from '@/store.js';
+import store from '@/store.js'
 export default {
     data() {
         return {
             username: null,
             password: null
-        };
+        }
     },
     methods: {
         login() {
-            store.user = this.username;
-            const redirectPath = this.$route.query.redirect;
-            this.$router.push(redirectPath);
+            store.user = this.username
+            const redirectPath = this.$route.query.redirect
+            this.$router.push(redirectPath)
         }
     }
-};
+}
 </script>

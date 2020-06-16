@@ -13,18 +13,21 @@
             <li>
                 <router-link to="/user">Daseboard</router-link>
             </li>
+            <li>
+                <router-link to="/todo">Todo</router-link>
+            </li>
         </ul>
     </nav>
 </template>
 <script>
-import store from '@/store.js';
+import store from '@/store.js'
 export default {
     data() {
         return {
             destinations: store.destinations
-        };
+        }
     }
-};
+}
 </script>
 <style scoped>
 #nav {
