@@ -1,27 +1,30 @@
 <template>
-    <div class="todo">
-        <div>
-            <button @click="increment">increment</button>
-            <p>{{ count }}={{ countPlusLocalState }}</p>
-            <p>Done Todo:{{ doneTodosCount }}</p>
-            <ul class="todos">
-                <li v-for="todo in todos" :key="todo.id" class="todo-item">
-                    <input
-                        type="checkbox"
-                        :name="todo.text"
-                        :id="todo.id"
-                        :checked="todo.done"
-                        @change="changeTodo(todo.id)"
-                    />
-                    {{ todo.text }}
-                    <!-- <span @click="removeTodo">x</span> -->
-                </li>
-            </ul>
-            <input type="text" name="todoText" v-model="newTodo" />
-            <button @click="addTodo(newTodo)">Add Todo</button>
-            <button @click="asyncAddTodo(newTodo)">Async Add Todo</button>
-        </div>
+  <div class="todo">
+    <div>
+      <button @click="increment">increment</button>
+      <p>{{ count }}={{ countPlusLocalState }}</p>
+      <p>Done Todo:{{ doneTodosCount }}</p>
+      <ul class="todos">
+        <li v-for="todo in todos"
+            :key="todo.id"
+            class="todo-item">
+          <input type="checkbox"
+                 :name="todo.text"
+                 :id="todo.id"
+                 :checked="todo.done"
+                 @change="changeTodo(todo.id)" />
+          {{ todo.text }}
+          <!-- <span @click="removeTodo">x</span> -->
+        </li>
+      </ul>
+      <input type="text"
+             name="todoText"
+             v-model="newTodo"
+             placeholder="请输入TODO" />
+      <button @click="addTodo(newTodo)">Add Todo</button>
+      <button @click="asyncAddTodo(newTodo)">Async Add Todo</button>
     </div>
+  </div>
 </template>
 
 <script>
@@ -48,28 +51,33 @@ export default {
                 id
             })
         },
+        addTodo() {
+            this.$store.commit(ADD_TODO, this.newTodo)
+            this.newTodo = ''
+        },
         // ...mapMutations([CHANGE_TODO_STATE]),
         ...mapMutations({
-            changeTodo: CHANGE_TODO_STATE,
-            addTodo: ADD_TODO
+            changeTodo: CHANGE_TODO_STATE
+            // addTodo: ADD_TODO
         }),
         ...mapActions(['asyncAddTodo'])
     },
     computed: {
         // count() {
+        //     console.log(this.$store.state)
+
         //     return this.$store.state.count
         // },
-        ...mapState(['count', 'todos']),
         ...mapState({
             // 箭头函数可使代码更简练
-            countB: state => state.count,
+            count: state => state.todoState.count,
 
             // 传字符串参数 'count' 等同于 `state => state.count`
-            countAlias: 'count',
+            todos: state => state.todoState.todos,
 
             // 为了能够使用 `this` 获取局部状态，必须使用常规函数
             countPlusLocalState(state) {
-                return state.count + this.localCount
+                return state.todoState.count + this.localCount
             }
         }),
         // doneTodosCount() {

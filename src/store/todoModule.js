@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import * as types from './mutation-types'
-Vue.use(Vuex)
-export default new Vuex.Store({
+export default {
     state: {
         count: 0,
         todos: [
@@ -40,21 +37,22 @@ export default new Vuex.Store({
             setTimeout(() => {
                 commit(types.ADD_TODO, text)
             }, 1000)
-        },
-        // 组合多个action
-        actionB({ dispatch, commit }) {
-            return dispatch('actionA').then(() => {
-                commit('someOtherMutation')
-            })
-        },
-        // 使用async/await组合多个action
-        async actionA({ commit }) {
-            commit('gotData', await getData())
-        },
-        async actionB({ dispatch, commit }) {
-            await dispatch('actionA') // 等待 actionA 完成
-            commit('gotOtherData', await getOtherData())
         }
+        // 组合多个action
+        // actionB({ dispatch, commit, rootState }) {
+        //     console.log('rootState', rootState)
+        //     return dispatch('actionA').then(() => {
+        //         commit('someOtherMutation')
+        //     })
+        // },
+        // // 使用async/await组合多个action
+        // async actionA({ commit }) {
+        //     commit('gotData', await getData())
+        // },
+        // async actionB({ dispatch, commit }) {
+        //     await dispatch('actionA') // 等待 actionA 完成
+        //     commit('gotOtherData', await getOtherData())
+        // }
         // checkout({ commit, state }, products) {
         //     // 把当前购物车的物品备份起来
         //     const savedCartItems = [...state.cart.added]
@@ -84,4 +82,4 @@ export default new Vuex.Store({
             return state.todos.find(todo => todo.id === id)
         }
     }
-})
+}

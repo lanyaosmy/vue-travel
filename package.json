@@ -8,6 +8,7 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "ant-design-vue": "^1.6.2",
         "core-js": "^3.6.5",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
@@ -46,7 +47,7 @@
             "prettier"
         ],
         "rules": {
-            "prettier/prettier": "error",
+            "prettier/prettier": "warn",
             "generator-star-spacing": "off",
             "no-console": "off",
             "no-debugger": "off",

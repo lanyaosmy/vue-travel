@@ -1,10 +1,11 @@
 <template>
-    <div id="app">
-        <Navigation />
-        <transition name="moveUp" mode="out-in">
-            <router-view :key="$route.path" />
-        </transition>
-    </div>
+  <div id="app">
+    <Navigation />
+    <transition name="moveUp"
+                mode="out-in">
+      <router-view :key="$route.path" />
+    </transition>
+  </div>
 </template>
 <script>
 import Navigation from '@/components/Navigation.vue'
